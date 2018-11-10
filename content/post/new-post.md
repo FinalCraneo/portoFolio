@@ -2,7 +2,7 @@
 title: "El Primer Post"
 date: 2018-11-09T16:09:49-06:00
 draft: false
-image: "cuteGirl.jpeg"
+image: "uploads/cuteGirl.jpeg"
 ---
 
 1. First ordered list item
