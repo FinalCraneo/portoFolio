@@ -3,6 +3,9 @@ title: "El Primer Post"
 date: 2018-11-09T16:09:49-06:00
 draft: false
 image: "uploads/cuteGirl.jpeg"
+# description: Una descripcion
+innerDisplay: sketch
+innerUrl: js/sketch.js
 ---
 
 1. First ordered list item

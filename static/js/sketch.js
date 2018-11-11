@@ -1,29 +1,34 @@
-// module aliases
-        var Engine = Matter.Engine,
-        Render = Matter.Render,
-        World = Matter.World,
-        Bodies = Matter.Bodies;
+var me = document.currentScript;
+var parent = me.parentElement;
 
-		// create an engine
-		var engine = Engine.create();
+function setup() {
+	let canvas = createCanvas(720, 400);
+	console.log(parent.id);
+	canvas.parent(parent.id);
 
-		// create a renderer
-		var render = Render.create({
-			element: document.getElementById("contenedor"),
-			engine: engine
-		});
+	// Create the canvas
+  
+  background(200);
 
-		// create two boxes and a ground
-		var boxA = Bodies.rectangle(400, 200, 80, 80);
-		var boxB = Bodies.rectangle(450, 50, 80, 80);
-		var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
+  // Set colors
+  fill(204, 101, 192, 127);
+  stroke(127, 63, 120);
 
-		// add all of the bodies to the world
-		World.add(engine.world, [boxA, boxB, ground]);
+  // A rectangle
+  rect(40, 120, 120, 40);
+  // An ellipse
+  ellipse(240, 240, 80, 80);
+  // A triangle
+  triangle(300, 100, 320, 100, 310, 80);
 
-		// run the engine
-		Engine.run(engine);
+  // A design for a simple flower
+  translate(580, 200);
+  noStroke();
+  for (var i = 0; i < 10; i ++) {
+    ellipse(0, 30, 20, 80);
+    rotate(PI/5);
+  }
+}
 
-		// run the renderer
-		Render.run(render);
-		console.log('lulz');
+function draw() {
+}
