@@ -6,10 +6,10 @@ paginate        = 6
 #SectionPagesMenu = "main"
 
 [params]
-  title       = "Example Site"
-  subtitle    = "My awesome Site"
+  title       = "Kenopsia"
+  subtitle    = "Kenopsia"
 
-  cover       = "img/blog-cover.jpg"
+  cover       = "uploads/images/top.jpg"
   description = "This is de awesome description"
   metaDescription = ""
   googleAnalytics = ""
@@ -18,18 +18,18 @@ paginate        = 6
 
   twitterName = "finalcraneo"
   fbName = "finalcraneo"
-  githubName = "finalcraneo"
+  # githubName = "finalcraneo"
 
-  logo = "hugo-logo.png"
+  logo = "uploads/images/logo.png"
   orgName = "EM"
   orgWebsite = "https://www.telematika.org"
   orgDescription = "Here is a description placeholder for your org"
 
-  author = "EM"
-  authorAvatar = "img/ghost-icon.png"
-  authorLocation = "Bandung, ID"
-  authorWebsite = "https://eueung.github.io"
-  authorDescription = "Describe yourself.."
+  author = "Joseph Flores"
+  authorAvatar = "uploads/images/me.png"
+  authorLocation = "Puebla, MX"
+  authorWebsite = "https://finalcraneo.github.io"
+  authorDescription = "Este soy yo"
 
   pageNotFoundTitle = "404 - Page not found"
 
@@ -45,8 +45,8 @@ paginate        = 6
   weight = 200
 
 [[menu.main]]
-  name = "Go"
-  url = "/tags/golang/"
+  name = "Blog"
+  url = "/tags/Blogs/"
   weight = 100
 
 [[menu.main]]
