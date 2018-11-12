@@ -19,5 +19,8 @@ Esta es una descripcion de p5 en Hugo y como trato de ocultar el hecho de que me
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
 <div id="tenedor">
-<script src="../js/sketch.js"></script>
+<script src="../js/player.js"></script>
+<script src="../js/GameLayers.js"></script>
+<script src="../js/anim.js"></script>
+<script src="../js/AniLib.js"></script>
 </div>
