@@ -1,123 +1,103 @@
-class Animator{
-	constructor(){
-		
-	}
+class Animator {
+    constructor() {
 
-	static spritesFromSheet(x, y, w, h, q) {
+    }
 
-		let divided = {};
-		divided.frames = [];
+    static spritesFromSheet(sheets) {
 
-		for (let i = 0; i < q; i++) {
-			let newSprite = {
-				name: 'sprite-' + i,
-				position:{
-					w: w,
-					h: h,
-					x: x,
-					y: y
-				}
-				
-			};
-			divided.frames.push(newSprite);
-			x += w;
-		}
+        this.sheets = sheets;
 
-		return divided;
-	}
+        //separa los sprites y los mete en su obj
+        for (let sheet in this.sheets) {
+            //si no es el estado inicial corta las sheets
+            if (sheet != "state") {
+                let currentSheet = [];
+                let thisSheet = this.sheets[sheet];
+                let xx = thisSheet.x;
+                for (let i = 1; i <= thisSheet.numSprites; i++) {
+                    let currentSprite = thisSheet.img.get(xx, thisSheet.y, thisSheet.w, thisSheet.h);
+                    currentSheet.push(currentSprite);
+                    xx += thisSheet.w;
+                }
+                this.sheets[sheet].Sprites = currentSheet;
+            }
+        }
+        return this.sheets;
+    }
 }
 
-class Animation{
+class Animation {
 
-	constructor(sheets){
-		this.setAnims = {};
-		this.sheets = sheets;
-		this.setAnims = {};
-		this.persistent = true;
+    constructor(sheets) {
 
-		for(let state in this.sheets)
-			this.setAnims[state] = Animator.spritesFromSheet(sheets[state].x, sheets[state].y,
-				sheets[state].w, sheets[state].h, sheets[state].numSprites);
-		
-		
-		this.state = sheets.state;
-		this.speed = this.sheets[this.state].speed;
-		this.time = 0;
-		this.animationFrames = [];
+        this.sheets = Animator.spritesFromSheet(sheets);
 
-		this.SeparateSheet();
+        this.persistent = true;
 
-		this.xx;
-		this.yy;
-		this.ww;
-		this.hh;
-	}
+        this.state = sheets.state; //estado inicial desde Sheets
+        this.speed = this.sheets[this.state].speed; //Velocidad desde Sheets
+        this.time = 0; //Inicia el tiempo en 0
+        this.animationFrames = []; //animation Frames empieza vacio
 
-	SeparateSheet(){
+        this.xx;
+        this.yy;
+        this.ww;
+        this.hh;
+    }
+    //dibuja el estado actual
+    Draw(x, y, w, h) {
 
-		this.animationFrames = [];
+        this.xx = x;
+        this.yy = y;
+        this.ww = w;
+        this.hh = h;
 
-		for (let frame of this.setAnims[this.state].frames) {
+        this.CurrentState();
+        this.time += this.speed;
+    }
+    //toma la animacion actual
+    CurrentState() {
+        let aniF = this.sheets[this.state].Sprites;
+        image(aniF[floor(this.time) % aniF.length], this.xx, this.yy, this.ww, this.hh);
 
-			let pos = frame.position;
+        //si los frames se acaban y es estado no es persistente regresa a Idle
+        if (floor(this.time) % aniF.length >= aniF.length - 1 && !this.persistent) {
 
-			let img = this.sheets[this.state].img.get(pos.x, pos.y, pos.w, pos.h);
-			this.animationFrames.push(img);
-		}
+            this.ChangeState('Idle', true);
+            this.persistent = true;
+        }
+    }
 
-	}
-
-	Draw(x, y, w, h){
-
-		this.xx = x;
-		this.yy = y;
-		this.ww = w;
-		this.hh = h;
-
-		this.CurrentState();
-		this.time += this.speed;
-	}
-
-	CurrentState(){
-		let aniF = this.animationFrames;
-		image(aniF[floor(this.time) % aniF.length], this.xx, this.yy, this.ww, this.hh);
-
-		if(floor(this.time) % aniF.length >= aniF.length -1 && !this.persistent){
-
-			this.ChangeState('Idle');
-			this.persistent = true;
-		}
-	}
-
-	ChangeState(newState, persistent){
-		this.persistent = persistent;
-		this.state = newState;
-		this.speed = this.sheets[newState].speed;
-		this.time = 0;
-		this.SeparateSheet();
-	}
+    ChangeState(newState, persistent) {
+        this.persistent = persistent;
+        this.state = newState;
+        this.speed = this.sheets[newState].speed;
+        this.time = 0;
+    }
 }
 
-class BundleSheets{
-	constructor(){
-		this.bundleSheets = {};
-	}
+class BundleSheets {
+    constructor() {
+        this.bundleSheets = {};
+    }
+    //carga la imagen desde la direccion y agrega la imagen a el conjunto de Sheets
+    Add(address, id, x, y, w, h, numSprites, speed) {
+        let cabIdle = loadImage(address);
+        this.bundleSheets[id] = {
+            img: cabIdle,
+            x: x,
+            y: y,
+            w: w,
+            h: h,
+            numSprites: numSprites,
+            speed: speed
+        };
+    }
 
-	Add(address, id, x, y, w, h, numSprites, speed){
-		let cabIdle = loadImage(address);
-		this.bundleSheets[id] = {
-			img: cabIdle,
-			x: x,
-			y: y,
-			w: w,
-			h: h,
-			numSprites: numSprites,
-			speed: speed
-		};
-	}
 
-	SetInitialState(state){
-		
-		this.bundleSheets['state'] = state;
-	}
+
+    SetInitialState(state) {
+
+        this.bundleSheets['state'] = state;
+    }
 }
