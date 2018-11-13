@@ -1,4 +1,10 @@
+'use strict';
+
 exports.handler = (event, context, callback) => {
+   
+   console.log('event: ',event);
+   console.log('context: ', context);
+   console.log('callback: ', callback);
    
    let url_string = window.location.href; //window.location.href
    let url = new URL(url_string);
