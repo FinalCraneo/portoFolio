@@ -1,5 +1,3 @@
-import Animator from './aniLib.js';
-
 //set in canvas
 var me = document.currentScript;
 var parent = me.parentElement;
