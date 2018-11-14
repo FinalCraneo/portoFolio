@@ -1,6 +1,6 @@
 'use strict';
 
-var firebase = require("firebase");
+var firebase = require('firebase');
 
 exports.handler = function(event, context, callback) {
 	context.callbackWaitsForEmptyEventLoop = false;  //<---Important
