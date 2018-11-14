@@ -28,7 +28,7 @@ class Animator {
 
 class Animation {
 
-    constructor(sheets) {
+    constructor(sheets, x, y) {
 
         this.sheets = Animator.spritesFromSheet(sheets);
 
@@ -39,16 +39,14 @@ class Animation {
         this.time = 0; //Inicia el tiempo en 0
         this.animationFrames = []; //animation Frames empieza vacio
 
-        this.xx;
-        this.yy;
+        this.xx = x;
+        this.yy = y;
         this.ww;
         this.hh;
     }
     //dibuja el estado actual
-    Draw(x, y, w, h) {
+    Draw(w, h) {
 
-        this.xx = x;
-        this.yy = y;
         this.ww = w;
         this.hh = h;
 
@@ -73,6 +71,21 @@ class Animation {
         this.state = newState;
         this.speed = this.sheets[newState].speed;
         this.time = 0;
+    }
+
+    Move(direction) {
+        switch (direction) {
+            case 37:
+                console.log(this.xx);
+                this.xx--;
+                break;
+            case 38:
+                break;
+            case 39:
+                break;
+            case 40:
+                break;
+        }
     }
 }
 
@@ -99,5 +112,69 @@ class BundleSheets {
     SetInitialState(state) {
 
         this.bundleSheets['state'] = state;
+    }
+}
+
+class Elements {
+    constructor() {
+    }
+
+    static conectToStreamElements() {
+
+    	this.animoso = animoso;
+
+        // Your StreamElements JWT
+        const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWE3YjBkOTQ4ZWNkZmIwMDAxYjUzNzI4IiwiY2hhbm5lbCI6IjVhN2IwZDk0OGVjZGZiMDAwMWI1MzcyOSIsInByb3ZpZGVyIjoidHdpdGNoIiwicm9sZSI6Im93bmVyIiwiYXV0aFRva2VuIjoiQzBncTNUSDRhTFRPMnhvUFN2R1pDR3NVeGJXeHk0T1ZLQkFhVV9HTVpmbGpuaHV0IiwiaWF0IjoxNTQyMDQ4NzUyLCJpc3MiOiJTdHJlYW1FbGVtZW50cyJ9.WGhcAGptLvzzG_TVLIFTv8R_6lNY7SOxUcsqMbOhRpA';
+
+        const socket = io('https://realtime.streamelements.com', {
+            transports: ['websocket']
+        });
+
+        // Socket connected
+        socket.on('connect', onConnect);
+
+        // Socket got disconnected
+        socket.on('disconnect', onDisconnect);
+
+        // Socket is authenticated
+        socket.on('authenticated', onAuthenticated);
+
+        // New event received
+        socket.on('event', onEvent);
+        // New event received
+        socket.on('event:test', onTestEvent);
+
+        function onConnect() {
+            console.log('Successfully connected to the websocket');
+
+            socket.emit('authenticate', {
+                method: 'jwt',
+                token: accessToken
+            });
+        }
+
+        function onDisconnect() {
+            console.log('Disconnected from websocket');
+            // Reconnect
+        }
+
+        function onAuthenticated(data) {
+            const {
+                channelId
+            } = data;
+
+            console.log(`Successfully connected to channel ${channelId}`);
+        }
+
+        function onEvent(event) {
+            // Deal with events
+        }
+
+        function onTestEvent(event) {
+            console.log('evento: ', event.listener);
+            if (event.listener == 'follower-latest') {
+                animoso.ChangeState('AttackDerecha', false);
+            }
+        }
     }
 }

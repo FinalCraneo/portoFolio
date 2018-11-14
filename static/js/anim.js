@@ -39,7 +39,7 @@ function setup() {
 	let canvas = createCanvas(720, 400);
 	canvas.parent(parent.id);
 
-	anim1 = new Animation(theBundle.bundleSheets);
+	anim1 = new Animation(theBundle.bundleSheets, 0,0);
 
 
 	//layers
@@ -51,7 +51,7 @@ function setup() {
 function draw() {
 	background(0);
 	//image(anim1.animationFrames[frameCount % anim1.animationFrames.length], 0, 0);
-	anim1.Draw(100, 10, 64, 64);
+	anim1.Draw(64, 64);
 
 
 	//image(anim1.animationFrames[0], 0, 0);
