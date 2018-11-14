@@ -49,7 +49,7 @@ function setup() {
 }
 
 function draw() {
-	background(0);
+	background(1);
 	//image(anim1.animationFrames[frameCount % anim1.animationFrames.length], 0, 0);
 	anim1.Draw(64, 64);
 
