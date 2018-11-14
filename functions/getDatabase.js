@@ -24,8 +24,6 @@ exports.handler = function(event, context, callback) {
 
     let hello = 'Hello';
 
-    callback(null, hello);
-
     var bodyO = {
         nombre: 'Joseph',
         edad: 25
