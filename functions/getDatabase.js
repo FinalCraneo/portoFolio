@@ -15,9 +15,9 @@ exports.handler = function(event, context, callback) {
 
     // database = firebase.database();
 
-    let hello = 'Hello';
+    // let hello = 'Hello';
 
-    callback(null, hello);
+    // callback(null, hello);
 
     var bodyO = {
         nombre: 'Joseph',
