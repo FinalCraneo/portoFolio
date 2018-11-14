@@ -1,7 +1,6 @@
 let dude, dudeSheets;
 let database;
 let params;
-let useless;
 
 function preload() {
 
@@ -39,7 +38,7 @@ function setup() {
     dude = new Animation(dudeSheets.bundleSheets, 0, 0);
 
     elementManager = new Elements();
-    elementManager.conectToStreamElements(dude);
+    Elements.conectToStreamElements();
 }
 
 function draw() {

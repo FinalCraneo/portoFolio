@@ -121,8 +121,6 @@ class Elements {
 
     static conectToStreamElements() {
 
-    	this.animoso = animoso;
-
         // Your StreamElements JWT
         const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNWE3YjBkOTQ4ZWNkZmIwMDAxYjUzNzI4IiwiY2hhbm5lbCI6IjVhN2IwZDk0OGVjZGZiMDAwMWI1MzcyOSIsInByb3ZpZGVyIjoidHdpdGNoIiwicm9sZSI6Im93bmVyIiwiYXV0aFRva2VuIjoiQzBncTNUSDRhTFRPMnhvUFN2R1pDR3NVeGJXeHk0T1ZLQkFhVV9HTVpmbGpuaHV0IiwiaWF0IjoxNTQyMDQ4NzUyLCJpc3MiOiJTdHJlYW1FbGVtZW50cyJ9.WGhcAGptLvzzG_TVLIFTv8R_6lNY7SOxUcsqMbOhRpA';
 
