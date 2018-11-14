@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FinalCraneo/lambda.git"
+    "url": "git+https://github.com/FinalCraneo/portoFolio.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/FinalCraneo/lambda/issues"
+    "url": "https://github.com/FinalCraneo/portoFolio/issues"
   },
-  "homepage": "https://github.com/FinalCraneo/lambda#readme",
+  "homepage": "https://github.com/FinalCraneo/portoFolio/#readme",
   "dependencies": {
     "axios": "^0.18.0",
     "firebase": "^5.5.8",
