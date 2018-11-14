@@ -1,4 +1,6 @@
-exports.handler = (event, contect, callback) => {
+exports.handler = function(event, context, callback) {
+
+
     //TODO
 
     // var config = {
@@ -17,4 +19,13 @@ exports.handler = (event, contect, callback) => {
 
     callback(null, hello);
 
-};
+    var bodyO = {
+        nombre: 'Joseph',
+        edad: 25
+    };
+
+    callback(null, {
+        statusCode: 200,
+        body: JSON.stringify(bodyO)
+    });
+}
