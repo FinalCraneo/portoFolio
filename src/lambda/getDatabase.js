@@ -9,9 +9,9 @@ exports.handler = (event, context, callback) => {
 
     console.log('El nombre: ', event.queryStringParameters.name);
 
-    // let name = event.queryStringParameters.name;
+    let name = event.queryStringParameters.name;
 
-    axios.get(`https://my-not-awesome-project-24bbf.firebaseio.com/users/Saul.json`)
+    axios.get(`https://my-not-awesome-project-24bbf.firebaseio.com/users/${name}.json`)
         .then((res) => {
             res.data.params = event.queryStringParameters;
             callback(null, {
