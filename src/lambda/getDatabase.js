@@ -1,39 +1,25 @@
-'use strict';
+const axios = require('axios');
 
-var firebase = require('firebase');
+var url_string = "http://www.example.com/t.html?a=1&b=3&c=m2"; //window.location.href
+var url = new URL(url_string);
+var c = url.searchParams.get("c");
+console.log(c);
 
-exports.handler = function(event, context, callback) {
-    context.callbackWaitsForEmptyEventLoop = false; //<---Important
+exports.handler = (event, context, callback) => {
 
-    var config = {
-        apiKey: "AIzaSyCPsiU4bLGc1_18AVr3MNevz_OteSedi7Q",
-        authDomain: "my-not-awesome-project-24bbf.firebaseapp.com",
-        databaseURL: "https://my-not-awesome-project-24bbf.firebaseio.com",
-        projectId: "my-not-awesome-project-24bbf",
-        storageBucket: "my-not-awesome-project-24bbf.appspot.com",
-        messagingSenderId: "104276198773"
-    };
+    console.log('El nombre: ', event.queryStringParameters.name);
 
-    if (firebase.apps.length == 0) { // <---Important!!! In lambda, it will cause double initialization.
-        firebase.initializeApp(config);
-    }
+    let name = event.queryStringParameters.name;
 
-    let database = firebase.database();
-
-    var url_string = "http://www.example.com/t.html?a=1&b=3&c=m2-m3-m4-m5"; //window.location.href
-    var url = new URL(url_string);
-    var c = url.searchParams.get("c");
-    console.log('c: ', c);
-
-    let hello = 'Hello';
-
-    var bodyO = {
-        nombre: 'Joseph',
-        edad: 25
-    };
-
-    callback(null, {
-        statusCode: 200,
-        body: JSON.stringify(bodyO)
-    });
-}
+    axios.get(`https://my-not-awesome-project-24bbf.firebaseio.com/users/${name}.json`)
+        .then((res) => {
+            res.data.params = event.queryStringParameters;
+            callback(null, {
+                statusCode: 200,
+                body: JSON.stringify(res.data),
+            });
+        })
+        .catch((err) => {
+            callback(err);
+        });
+};
