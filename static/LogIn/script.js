@@ -1,1 +1,1 @@
-$('#authLink').attr('href', 'https://www.kenopsia.ga/auth/');
+$('#authLink').attr('href', 'https://www.kenopsia.ga/.netlify/functions/auth/');
