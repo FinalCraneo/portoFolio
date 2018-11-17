@@ -17,9 +17,9 @@ exports.handler = (event, context, callback) => {
         .then(res => {
             console.log(res);
 
-            axios.put('https://my-not-awesome-project-24bbf.firebaseio.com/users.json', {
-                    foo: bar,
-                    algo: res
+            axios.put('https://my-not-awesome-project-24bbf.firebaseio.com/users/Javiero.json', {
+                    "email": "Javiero.flores@gmail.com",
+                    "name": "Javiero's Cafe"
                 })
                 .then(response => {
                     // do something...
