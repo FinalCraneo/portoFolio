@@ -4,7 +4,7 @@ exports.handler = (event, context, callback) => {
 
     client_id = process.env.client_id;
     redirect_uri = process.env.redirect_uri;
-    scope = process.env.scopes;
+    scopes = process.env.scopes;
 
 
     let AuthUrl = `https://id.twitch.tv/oauth2/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=code&scope=${scopes}`;
