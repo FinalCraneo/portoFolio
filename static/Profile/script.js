@@ -14,4 +14,3 @@ let postUrl = `https://id.twitch.tv/oauth2/token?client_id=${client_id}&client_s
 $.post(postUrl, data => {
 	console.log(data);
 });
-
